@@ -1,5 +1,7 @@
 # Devops-Capstone-Project
 
+![Build Status](https://github.com/Modymanour/devops-capstone-project/actions/workflows/ci-build.yaml/badge.svg)
+
 ### Description
 
 My Final Project for Devops cource created by IBM.This is a software project made from scratch and in it I have applied all the cources I have learned; this includes:
