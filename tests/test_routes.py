@@ -131,19 +131,18 @@ class TestAccountService(TestCase):
         """ It should read a single account """
         account = self._create_accounts(1)[0]
         response = self.client.get(
-            f"{BASE_URL}/{account.id}",content_type="application/json"
+            f"{BASE_URL}/{account.id}", content_type="application/json"
         )
-        self.assertEqual(response.status_code,status.HTTP_200_OK)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
         data = response.get_json()
-        self.assertEqual(data['id'],account.id)
-    
+        self.assertEqual(data['id'], account.id)
+
     def test_account_not_found(self):
         """It should not Read an Account that is not found"""
-        account = self._create_accounts(1)[0]
         response = self.client.get(
-            f"{BASE_URL}/20321",content_type="application/json"
+            f"{BASE_URL}/20321", content_type="application/json"
         )
-        self.assertEqual(response.status_code,status.HTTP_404_NOT_FOUND)
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
 
     def test_update_account(self):
         """It should Update an existing Account"""
@@ -151,11 +150,12 @@ class TestAccountService(TestCase):
         new_account = account
         new_account.name = "new_name"
         response = self.client.put(
-            f"{BASE_URL}/{new_account.id}",json=new_account.serialize()
+            f"{BASE_URL}/{new_account.id}", json=new_account.serialize()
         )
-        self.assertEqual(response.status_code,status.HTTP_200_OK)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
         updated_account = response.get_json()
         self.assertEqual(updated_account["name"], "new_name")
+
     def test_update_but_acc_not_found(self):
         """It should not Update an Account not found"""
         account = self._create_accounts(1)[0]
@@ -164,7 +164,7 @@ class TestAccountService(TestCase):
         response = self.client.put(
             f"{BASE_URL}/200",json=new_account.serialize()
         )
-        self.assertEqual(response.status_code,status.HTTP_404_NOT_FOUND)
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
 
     def test_delete_account(self):
         """It should Delete an Account"""
@@ -172,23 +172,24 @@ class TestAccountService(TestCase):
         response = self.client.delete(
             f"{BASE_URL}/{account.id}"
         )
-        self.assertEqual(response.status_code,status.HTTP_204_NO_CONTENT)
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+ 
     def test_delet_not_found(self):
         """ It should not delete an account not found """
         account = self._create_accounts(1)[0]
         response = self.client.delete(
             f"{BASE_URL}/200"
         )
-        self.assertEqual(response.status_code,status.HTTP_404_NOT_FOUND)
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
 
     def test_list_accounts(self):
         """It should Get a list of Accounts"""
         self._create_accounts(5)
         response = self.client.get(f"{BASE_URL}")
-        self.assertEqual(response.status_code,status.HTTP_200_OK)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
         data = response.get_json()
-        self.assertEqual(5,len(data))
-    
+        self.assertEqual(5, len(data))
+
     def test_security_headers(self):
         """It should return security headers"""
         response = self.client.get('/', environ_overrides=HTTPS_ENVIRON)
@@ -201,7 +202,7 @@ class TestAccountService(TestCase):
         }
         for key, value in headers.items():
             self.assertEqual(response.headers.get(key), value)
-    
+
     def test_cors_security(self):
         """It should return a CORS header"""
         response = self.client.get('/', environ_overrides=HTTPS_ENVIRON)
