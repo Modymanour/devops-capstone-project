@@ -53,7 +53,7 @@ spec:
 apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
-  name: nosetests
+  name: nose
 spec:
   description: This task will run nosetests
   workspaces:
@@ -82,4 +82,4 @@ spec:
         pip install -qr requirements.txt
 
         echo "***** Running nosetests with: $(params.args)"
-        nosetests -v --with-spec --spec-colorAV
+        nosetestsAV
