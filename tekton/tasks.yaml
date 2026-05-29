@@ -82,4 +82,5 @@ spec:
         pip install -qr requirements.txt
 
         echo "***** Running nosetests with: $(params.args)"
+        pip show pinocchio nose
         nosetests -v --with-specAV
