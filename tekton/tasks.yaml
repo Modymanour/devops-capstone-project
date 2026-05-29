@@ -61,7 +61,7 @@ spec:
   params:
     - name: args
       type: string
-      default: "-v"
+      default: "-v --with-spec --spec-color"
     - name: database_uri
       description: Database connection string
       type: string
@@ -82,4 +82,4 @@ spec:
         pip install -qr requirements.txt
 
         echo "***** Running nosetests with: $(params.args)"
-        nosetests $(params.args)AV
+        nosetests -v --with-spec --spec-colorAV

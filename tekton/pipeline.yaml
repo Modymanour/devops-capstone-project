@@ -50,3 +50,16 @@ spec:
         value: ["--count","--max-complexity=10","--max-line-length=127","--statistics"]
       runAfter:
         - clone
+    
+    - name: nosetests
+      workspaces:
+        - name: source
+          workspace: pipeline-workspace
+      taskRef:
+        name: nosetests
+      params:
+        - name: database_uri
+          value: "sqlite:///test.db"
+      runAfter:
+        - clone
+    
