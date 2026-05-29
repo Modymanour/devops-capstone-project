@@ -84,4 +84,4 @@ spec:
         echo "***** Running nosetests with: $(params.args)"
         pip show pinocchio nose
         python -c "import pinocchio"
-        nosetests -v AV
+        nosetests $(params.args)
