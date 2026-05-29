@@ -82,4 +82,4 @@ spec:
         pip install -qr requirements.txt
 
         echo "***** Running nosetests with: $(params.args)"
-        nosetestsAV
+        nosetests -v --with-specAV
